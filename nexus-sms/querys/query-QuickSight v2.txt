@@ -1,0 +1,111 @@
+--Relatorio centro custo por dia       
+ select cen."name" Centro_custo, to_date(to_char(sms.created_at , 'DD/MM/YYYY'),'DD/MM/YYYY') as Data_SMS, sum(sms.segments) as Qtde_Segmentos, sum(sms.segments*sms.tax) as Valor_Cobrado
+   from public.nexus_sms_api_sms sms
+  inner join public.nexus_sms_api_smscampaign cam on cam.id= sms.campaign_id and cam."user" =sms.user_id 
+  left outer join public.nexus_sms_api_costcenter cen on cen.id = cam.cost_center_id and cen.user_id = sms.user_id 
+  where sms.user_id =2
+    and sms.dlr_status not in (1,6,7,8,9) -- mes de outubro (1,6,7,8,9)
+    and s_from = 'NEXUS'
+    and TO_DATE(to_char(sms.created_at , 'MON/YYYY'), 'MON/YYYY')>= TO_DATE(to_char(CURRENT_dATE - interval '1 months', 'MON/YYYY'), 'MON/YYYY')
+group by  cen."name", to_date(to_char(sms.created_at , 'DD/MM/YYYY'),'DD/MM/YYYY')
+order by cen."name", to_date(to_char(sms.created_at , 'DD/MM/YYYY'),'DD/MM/YYYY')
+
+
+-- Query de mensagens por telefone
+select  s_to as De,
+		s_from as Para,
+        message as Mensagem,
+        to_char(sms.created_at::date , 'DD/MM/YYYY') as "Disparo",
+        campaign.id as CodigoCampanha,
+  	campaign.title as Campanha, 
+  	cen."name" as centrocusto 
+  from nexus_sms_api_sms sms
+inner join nexus_sms_api_smscampaign campaign on campaign.id = sms.campaign_id and campaign."user" = sms.user_id 
+left outer join nexus_sms_api_costcenter cen on cen.id = campaign.cost_center_id and cen.user_id = sms.user_id 
+where sms.user_id = 2 
+  --and s_to = 'NEXUS'
+group by sms.id, campaign.title, campaign.id,cen."name"
+order by sms.id desc
+
+-- Query de Retorno
+select  s_from as telefone,
+        message as Mensagem,
+        to_char(sms.created_at::date , 'DD/MM/YYYY') as "retorno",
+        campaign.id as CodigoCampanha,
+  	campaign.title as Campanha, 
+  	cen."name" as centrocusto 
+  from nexus_sms_api_sms sms
+inner join nexus_sms_api_smscampaign campaign on campaign.id = sms.campaign_id and campaign."user" = sms.user_id 
+left outer join nexus_sms_api_costcenter cen on cen.id = campaign.cost_center_id and cen.user_id = sms.user_id 
+where sms.user_id = 2 
+  and s_to = 'NEXUS'
+group by sms.id, campaign.title, campaign.id,cen."name"
+order by sms.id desc
+
+
+--Relatorio de Disparos de campanhas
+SELECT to_char("nexus_sms_api_smscampaign".created_at , 'MON/YYYY'),
+sum("nexus_sms_api_smscampaign"."total_trigger") as "Linhas no Arquivo",
+            sum("nexus_sms_api_smscampaign".count_sms_cost) as "Valor tarifado",
+            sum("nexus_sms_api_smscampaign".count_sms_processed) as "Processados",
+            sum("nexus_sms_api_smscampaign".count_blacklist_nexus) as "Blacklist Nexus",
+            sum("nexus_sms_api_smscampaign".count_sms_invalid) as "Inválidos",
+            sum("nexus_sms_api_smscampaign".count_sms_triggered) as "Disparados",
+            sum("nexus_sms_api_smscampaign".count_sms_delivered) as "Entregue no Aparelho",
+            sum("nexus_sms_api_smscampaign".count_sms_not_delivered) as "Não Entregue no Aparelho"
+        FROM "nexus_sms_api_smscampaign"
+         WHERE "nexus_sms_api_smscampaign"."user" = 2
+          and TO_DATE(to_char("nexus_sms_api_smscampaign".created_at , 'MON/YYYY'), 'MON/YYYY')>= TO_DATE(to_char(CURRENT_dATE - interval '1 months', 'MON/YYYY'), 'MON/YYYY')
+        group by to_char("nexus_sms_api_smscampaign".created_at , 'MON/YYYY')
+
+
+
+-- Query Relatorio Analitico
+select 
+campaign.id as CodigoCampanha,
+campaign.title as Campanha,
+cost."name" as CentroCusto,
+string_agg(tag."name",', ') as tags,
+case when api.id is null then 'AGENDAMENTO'
+else 'DISPARO'
+end as ModeloCampanha,
+sms.s_to as telefone,
+sms.segments as QuantidadeSMS,
+sms.tax as ValorTaxa,
+sms.created_at as DataEnvio,
+sms.id as Id_sms,
+case when dlr_status = 1 then 'Processado'
+     when dlr_status = 2 then 'Entregue no Aparelho'
+     when dlr_status = 3 then 'Nao Entregue no Aparelho'
+     when dlr_status = 4 then 'Enviado para Operadora'
+     when dlr_status = 5 then 'Invalido'
+     when dlr_status = 6 then 'Blacklist Nexus'
+     when dlr_status = 7 then 'Nao esta na Whitelist'
+     when dlr_status = 8 then 'Invalido Operadora'
+     when dlr_status = 9 then 'Blacklist usuario'
+else 'Desconhecido'
+end as Status,
+sms.message as mensagem,
+campaign.created_at as data_campanha
+from public.nexus_sms_api_sms sms
+ inner join public.nexus_sms_api_smscampaign campaign on campaign.id = sms.campaign_id and campaign."user" =sms.user_id 
+ left outer join public.nexus_sms_api_smscampaign_tags ctags on ctags.smscampaign_id = sms.campaign_id 
+ left outer join public.nexus_sms_api_tag tag on ctags.tag_id = tag.id 
+ left outer join public.nexus_sms_api_apismscampaign_sms_list api on api.sms_id = sms.id 
+ left outer join public.nexus_sms_api_costcenter cost on cost.id = campaign.cost_center_id and cost.user_id=campaign.user
+  where sms.user_id = 2
+    and s_from = 'NEXUS'
+  group by SMS.ID, CAMPAIGN.title , CAMPAIGN.id , cost."name",API.id 
+  order by SMS.ID desc
+
+--Relatorio Financeiro por centro de custo mes
+ select to_char(sms.created_at , 'MON/YYYY') as mes, cen."name" as Centro_custo, sum(sms.segments) as Segmentos, sum(sms.segments*sms.tax) as ValorCobrado
+   from public.nexus_sms_api_sms sms
+  inner join public.nexus_sms_api_smscampaign cam on cam.id= sms.campaign_id and cam."user" =sms.user_id 
+  left outer join public.nexus_sms_api_costcenter cen on cen.id = cam.cost_center_id and cen.user_id = sms.user_id 
+  where sms.user_id =2
+    and sms.dlr_status not in (1,6,7,8,9) -- mes de outubro (1,6,7,8,9)
+    and s_from = 'NEXUS'
+    and TO_DATE(to_char(sms.created_at , 'MON/YYYY'), 'MON/YYYY')>= TO_DATE(to_char(CURRENT_dATE - interval '1 months', 'MON/YYYY'), 'MON/YYYY')
+group by   to_char(sms.created_at , 'MON/YYYY'), cen."name"
+
