@@ -1,0 +1,11 @@
+select c.title, cen."name" as "Centro Custo",
+       cast(m.created_at as date) as "Data",
+       count(1) as "Qtd Disparos",
+       sum(m.selling_tax) as "Valor Cobrado"
+  from public.message m
+ left outer join public.campaign c on m.campaign_id = c.id  
+ left outer join public.nexus_sms_api_costcenter cen on cen.id = c.cost_center_id and cen.user_id = c.user_id 
+ where m.user_id = 397
+   and cast(date_trunc('month', m.created_at) as date) >= cast(date_trunc('month', current_date - interval '1 months') as date)
+group by c.title, cen."name", cast(m.created_at as date)
+order by cast(m.created_at as date) desc

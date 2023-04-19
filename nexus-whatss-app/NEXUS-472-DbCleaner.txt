@@ -1,0 +1,4 @@
+git branch Feature/NEXUS-472-DbCleaner
+git checkout Feature/NEXUS-472-DbCleaner
+
+mkvirtualenv -p /usr/local/bin/python3.8 nexus_sms
