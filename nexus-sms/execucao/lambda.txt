@@ -1,2 +1,3 @@
 
+# Executar embiente local
 PYTHONPATH=. python handlers/db_cleaner_handler.py 
