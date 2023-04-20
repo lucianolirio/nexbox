@@ -1,0 +1,2 @@
+
+PYTHONPATH=. python handlers/db_cleaner_handler.py 

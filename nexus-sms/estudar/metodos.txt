@@ -1,0 +1,31 @@
+
+
+
+def f1(arg1, arg2):
+    print(arg1, arg2)
+
+
+def f2(*args, **kwargs):
+    print(args)
+    print("***")
+    print(kwargs)
+
+
+# f2(3, 4, 5, arg3=5, arg4=6)
+
+
+def f3():
+    d = [1,2,3,4]
+    return [x+1 for x in d]
+
+# print(f3())
+
+def f4():
+    # import ipdb; ipdb.set_trace()
+    d = [1,2,2,4]
+    dd = defaultdict(list)
+    for x in d:
+        dd[x].append("oi")
+    print(dd)
+
+f4()
