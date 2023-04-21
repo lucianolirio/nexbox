@@ -14,3 +14,21 @@ UNION ALL
 	pg_size_pretty(sum(pg_database_size(datname))) AS tamanho_pretty
 FROM pg_database
 -- WHERE datname NOT IN ('template0', 'template1', 'postgres'));
+
+
+
+from django.db import connection
+from nexus_sms_api.models import SMS
+
+
+def handle_db_cleaner():
+    
+    sms = SMS.objects.all()
+
+    for s in sms:
+        print(s.user_id)
+
+    
+    print("Estou dentro da funcao")
+    pass
+
