@@ -1,0 +1,12 @@
+# Parametros completos
+pg_dump --host=nexus-db-hml.cluster-can40vg8qver.us-east-1.rds.amazonaws.com --port=5432 --username=root --dbname=nexus_dev --inserts -Z5 -f ./postgresql_backup.dump
+
+
+# Parametros abreviados
+pg_dump -h nexus-db-hml.cluster-can40vg8qver.us-east-1.rds.amazonaws.com -U root -Fc -p 5432 -Z5 -f nexus_dev.bkp nexus_dev
+pg_dump -h nexus-db-hml.cluster-can40vg8qver.us-east-1.rds.amazonaws.com -U root -Fc -p 5432 -f nexus_dev.bkp nexus_dev
+
+pg_restore -h localhost -U postgres -p 5432 -d nexus_api2 postgres.bkp
+
+
+pg_dump -h nexus-db-prod.cluster-can40vg8qver.us-east-1.rds.amazonaws.com -U root -Fc -p 5432 -Z5 -f nexus_prod.bkp nexus_prod
