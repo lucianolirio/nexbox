@@ -12,3 +12,13 @@ pg_dump \
  -Z5 \
  -f $backup_name $database_name
  
+
+
+
+ pg_dump \
+ -h localhost \
+ -U postgres \
+ -Fc \
+ -p 5432 \
+ -Z5 \
+ -f whatsapp_prod.bkp whatsapp_prod
