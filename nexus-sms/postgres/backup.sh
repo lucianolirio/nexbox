@@ -1,24 +1,17 @@
 #!/usr/bin/env bash
 
-database_name='nexus_api3'
+# Incluir a linha comando do crontab
+# 00 23 * * * /home/nexboxprod/Postgres/Script/backup.sh
 
-backup_name='/home/postgres/backup/POSTGRESS_'$database_name'_'$(date '+%Y%m%d%H%M')'.BKP'
+database_name='whatsapp_prod'
 
-pg_dump \
+backup_name='/home/nexboxprod/Postgres/Backup/'$database_name'_'$(date '+%Y%m%d%H%M')'.bkp'
+
+PGPASSWORD="jih7656*##@quu!!!" pg_dump \
  -h localhost \
  -U postgres \
  -Fc \
  -p 5432 \
  -Z5 \
  -f $backup_name $database_name
- 
 
-
-
- pg_dump \
- -h localhost \
- -U postgres \
- -Fc \
- -p 5432 \
- -Z5 \
- -f whatsapp_prod.bkp whatsapp_prod
