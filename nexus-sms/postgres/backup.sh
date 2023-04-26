@@ -7,7 +7,7 @@
 
 database_name='whatsapp_prod'
 
-backup_name='/home/nexboxprod/Postgres/Backup/'$database_name'_'$(date '+%Y%m%d%H%M')'.bkp'
+backup_name='/home/nexboxprod/Postgres/Temp/'$database_name'_'$(date '+%Y%m%d%H%M')'.bkp'
 
 PGPASSWORD="jih7656*##@quu!!!" pg_dump \
  -h localhost \
