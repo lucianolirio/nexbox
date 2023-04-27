@@ -6,7 +6,7 @@ pg_dump --host=nexus-db-hml.cluster-can40vg8qver.us-east-1.rds.amazonaws.com --p
 pg_dump -h nexus-db-hml.cluster-can40vg8qver.us-east-1.rds.amazonaws.com -U root -Fc -p 5432 -Z5 -f nexus_dev.bkp nexus_dev
 pg_dump -h nexus-db-hml.cluster-can40vg8qver.us-east-1.rds.amazonaws.com -U root -Fc -p 5432 -f nexus_dev.bkp nexus_dev
 
-PGPASSWORD="senhaUserNex32" pg_restore -h localhost -U postgres -p 5432 -d nexus_prod_teste nexus_dev.bkp
+
 
 PGPASSWORD="senha..." pg_dump -h nexus-db-prod.cluster-can40vg8qver.us-east-1.rds.amazonaws.com -U root -Fc -p 5432 -Z5 -f nexus_prod.bkp nexus_prod
 
@@ -15,3 +15,7 @@ pg_dump -h localhost -U postgres -Fc -p 5432 -Z5 -f nexus_api3.bkp nexus_api3
 
 
 PGPASSWORD="senha..." pg_dump -h nexus-db-hml.cluster-can40vg8qver.us-east-1.rds.amazonaws.com -U root -Fc -p 5432 -f nexus_dev.bkp nexus_dev
+
+
+# Backup teste
+PGPASSWORD="senhaUserNex32" pg_restore -h localhost -U postgres -p 5432 -d nexus_api /mnt/d/Backup/Postgresql/nexus_prod.bkp
