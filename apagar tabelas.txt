@@ -1,0 +1,23 @@
+nexus
+ - SMSCampaign
+ - SMSCampaignFile
+ - SMSCampaignSplitFile
+ - SMSTemplateVariableFileIndex
+ - SMS
+ - ScheduledSMSCampaign
+ - APISMSCampaign
+ - DLR
+ - ZinkIdentifier 
+
+Whatsapp
+ - Campaign
+ - CampaignFile
+ - CampaignSplitFile
+ - Message
+ - AttendanceMessage
+ - MessageAnswer
+ - TemplateVariableFileIndex
+ - AttendanceUser - essa pode apagar td dia
+ - AttendanceAttachmentFile
+ - DLR
+ - AudioAnswer
