@@ -4,4 +4,3 @@ memuc start -i 0                                        # Inicia a VM
 memuc installapp -i 0 D:\WhatsAppBusiness_base.apk      # Instala um aplicativo na VM, nesse exemplo é o WhatssApp Business
 memuc stop -i 0                                         # Para a VM
 memuc remove -i 0                                       # Apaga a VM
-
