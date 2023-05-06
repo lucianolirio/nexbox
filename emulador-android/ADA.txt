@@ -10,6 +10,12 @@ Ex.: adb -s 127.0.0.1:21503 shell
      am start -n com.whatsapp.w4b/com.whatsapp.HomeActivity
 
 
+Lista as VMs ativas: adb devices
 
 
+Sequencia de comandos
 
+adb -s 127.0.0.1:21503 shell am start -n com.whatsapp.w4b/com.whatsapp.HomeActivity
+adb -s 127.0.0.1:21503 shell input tap 620 620
+adb -s 127.0.0.1:21503 shell input text 11981996325
+adb -s 127.0.0.1:21503 shell input tap 620 620
