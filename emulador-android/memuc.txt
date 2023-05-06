@@ -1,0 +1,7 @@
+memuc create                                            # Cria uma VM
+memuc rename -i 0 11971996349                           # Altera o nome da VM
+memuc start -i 0                                        # Inicia a VM
+memuc installapp -i 0 D:\WhatsAppBusiness_base.apk      # Instala um aplicativo na VM, nesse exemplo é o WhatssApp Business
+memuc stop -i 0                                         # Para a VM
+memuc remove -i 0                                       # Apaga a VM
+
