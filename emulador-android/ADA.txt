@@ -19,3 +19,8 @@ adb -s 127.0.0.1:21503 shell am start -n com.whatsapp.w4b/com.whatsapp.HomeActiv
 adb -s 127.0.0.1:21503 shell input tap 620 620
 adb -s 127.0.0.1:21503 shell input text 11981996325
 adb -s 127.0.0.1:21503 shell input tap 620 620
+
+
+
+Pesquisa de informações de pacotes
+adb shell dumpsys package whatsapp > resultado.txt
