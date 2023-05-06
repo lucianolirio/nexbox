@@ -1,0 +1,15 @@
+O ADA serve para executar comandos sistema do android via Shell
+Existem duas formas, usar o comando ADA mais o IP e Porta da VM e executar o campos
+Nesse exemplo está abrindo o WhatssApp na VM
+
+Ex.: adb -s 127.0.0.1:21503 shell am start -n com.whatsapp.w4b/com.whatsapp.HomeActivity
+
+Outra forma é Conectar no Shell e executar os comandos dentro da VM, depois de conectado na VM via Shell podem ser executados diversos comandos em sequencia
+
+Ex.: adb -s 127.0.0.1:21503 shell
+     am start -n com.whatsapp.w4b/com.whatsapp.HomeActivity
+
+
+
+
+
