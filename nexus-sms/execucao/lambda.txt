@@ -1,3 +1,8 @@
 
 # Executar embiente local
 PYTHONPATH=. python handlers/db_cleaner_handler.py
+
+
+# Executa testes, o argumetno -s executa com o ipdb
+pytest -s nexus_sms_db_cleaner
+

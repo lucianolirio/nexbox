@@ -1,0 +1,12 @@
+# adiciona os arquivos
+git add .
+
+# Faz o commit local
+git commit -m "create db cleaner"
+
+# Envia todas as Branchs para o github
+git push             
+
+# Envia somente a Branch NEXUS-472-DbCleaner para o github
+git push origin/Feature/NEXUS-472-DbCleaner
+
