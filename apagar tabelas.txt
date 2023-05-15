@@ -1,14 +1,13 @@
 nexus
- - ZinkIdentifier 
- - DLR
- - SMS
- - SMSCampaign
- - APISMSCampaign
-
- - SMSCampaignFile
- - SMSCampaignSplitFile
- - SMSTemplateVariableFileIndex
- - ScheduledSMSCampaign
+ - ZinkIdentifier *
+ - DLR *
+ - SMS *
+ - APISMSCampaign *
+ - SMSCampaign *
+ - SMSCampaignFile *
+ - SMSCampaignSplitFile *
+ - SMSTemplateVariableFileIndex *
+ - ScheduledSMSCampaign *
  
 Whatsapp
  - Campaign

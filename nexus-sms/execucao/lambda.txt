@@ -6,3 +6,11 @@ PYTHONPATH=. python handlers/db_cleaner_handler.py
 # Executa testes, o argumetno -s executa com o ipdb
 pytest -s nexus_sms_db_cleaner
 
+# Executa todos os testes
+pytest -s nexus_sms_db_cleaner -svv
+
+
+
+
+# para deployar somente o codigo da funcao
+sls deploy function -f db_cleaner -s dev

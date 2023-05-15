@@ -1,0 +1,32 @@
+ipdb> mocked_aws_s3_service
+<MagicMock name='AWSS3Service' id='140252911099472'>
+ipdb> mocked_aws_s3_service.return_value
+<MagicMock name='AWSS3Service()' id='140252860615936'>
+ipdb> mocked_aws_s3_service.return_value.upload_list_to_file_csv
+<MagicMock name='AWSS3Service().upload_list_to_file_csv' id='140252860770096'>
+ipdb> dir(mocked_aws_s3_service.return_value.upload_list_to_file_csv)
+['assert_any_call', 'assert_called', 'assert_called_once', 'assert_called_once_with', 'assert_called_with', 'assert_has_calls', 'assert_not_called', 'attach_mock', 'call_args', 'call_args_list', 'call_count', 'called', 'configure_mock', 'method_calls', 'mock_add_spec', 'mock_calls', 'reset_mock', 'return_value', 'side_effect']
+ipdb> mocked_aws_s3_service.return_value.upload_list_to_file_csv.method_calls
+[]
+ipdb> mocked_aws_s3_service.return_value.upload_list_to_file_csv.call_count
+9
+ipdb> mocked_aws_s3_service.return_value.upload_list_to_file_csv.call_args
+call('nexus-whatsapp-db-clenaer-dev', 'nexus_sms_api/2022/12/30/ScheduledSMSCampaign_2022_12_30.csv', <generator object queryset_iterator at 0x7f8f28d00b30>)
+ipdb> mocked_aws_s3_service.return_value.upload_list_to_file_csv.call_args
+call('nexus-whatsapp-db-clenaer-dev', 'nexus_sms_api/2022/12/30/ScheduledSMSCampaign_2022_12_30.csv', <generator object queryset_iterator at 0x7f8f28d00b30>)
+ipdb> mocked_aws_s3_service.return_value.upload_list_to_file_csv.call_args
+call('nexus-whatsapp-db-clenaer-dev', 'nexus_sms_api/2022/12/30/ScheduledSMSCampaign_2022_12_30.csv', <generator object queryset_iterator at 0x7f8f28d00b30>)
+ipdb> mocked_aws_s3_service.return_value.upload_list_to_file_csv.call_args
+call('nexus-whatsapp-db-clenaer-dev', 'nexus_sms_api/2022/12/30/ScheduledSMSCampaign_2022_12_30.csv', <generator object queryset_iterator at 0x7f8f28d00b30>)
+ipdb> mocked_aws_s3_service.return_value.upload_list_to_file_csv.mock_calls
+[call('nexus-whatsapp-db-clenaer-dev', 'nexus_sms_api/2022/12/30/ZinkIdentifier_2022_12_30.csv', <generator object queryset_iterator at 0x7f8f296675f0>),
+ call('nexus-whatsapp-db-clenaer-dev', 'nexus_sms_api/2022/12/30/DLR_2022_12_30.csv', <generator object queryset_iterator at 0x7f8f296679e0>),
+ call('nexus-whatsapp-db-clenaer-dev', 'nexus_sms_api/2022/12/30/SMS_2022_12_30.csv', <generator object queryset_iterator at 0x7f8f29667b30>),
+ call('nexus-whatsapp-db-clenaer-dev', 'nexus_sms_api/2022/12/30/APISMSCampaign_2022_12_30.csv', <generator object queryset_iterator at 0x7f8f29667c80>),
+ call('nexus-whatsapp-db-clenaer-dev', 'nexus_sms_api/2022/12/30/SMSCampaign_2022_12_30.csv', <generator object queryset_iterator at 0x7f8f29667ba0>),
+ call('nexus-whatsapp-db-clenaer-dev', 'nexus_sms_api/2022/12/30/SMSCampaignFile_2022_12_30.csv', <generator object queryset_iterator at 0x7f8f29667f90>),
+ call('nexus-whatsapp-db-clenaer-dev', 'nexus_sms_api/2022/12/30/SMSCampaignSplitFile_2022_12_30.csv', <generator object queryset_iterator at 0x7f8f28d004a0>),
+ call('nexus-whatsapp-db-clenaer-dev', 'nexus_sms_api/2022/12/30/SMSTemplateVariableFileIndex_2022_12_30.csv', <generator object queryset_iterator at 0x7f8f29667660>),
+ call('nexus-whatsapp-db-clenaer-dev', 'nexus_sms_api/2022/12/30/ScheduledSMSCampaign_2022_12_30.csv', <generator object queryset_iterator at 0x7f8f28d00b30>)]
+ipdb> dir(mocked_aws_s3_service.return_value.upload_list_to_file_csv)
+['assert_any_call', 'assert_called', 'assert_called_once', 'assert_called_once_with', 'assert_called_with', 'assert_has_calls', 'assert_not_called', 'attach_mock', 'call_args', 'call_args_list', 'call_count', 'called', 'configure_mock', 'method_calls', 'mock_add_spec', 'mock_calls', 'reset_mock', 'return_value', 'side_effect']
