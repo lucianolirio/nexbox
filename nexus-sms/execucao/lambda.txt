@@ -1,4 +1,3 @@
-
 # Executar embiente local
 PYTHONPATH=. python handlers/db_cleaner_handler.py
 
@@ -6,11 +5,25 @@ PYTHONPATH=. python handlers/db_cleaner_handler.py
 # Executa testes, o argumetno -s executa com o ipdb
 pytest -s nexus_sms_db_cleaner
 
+
 # Executa todos os testes
-pytest -s nexus_sms_db_cleaner -svv
+pytest -svv nexus_sms_db_cleaner
 
 
+# Para deployar somente o codigo da funcao
+sls deploy function --stage dev -f db_cleaner
+sls deploy function --stage hml -f db_cleaner
 
 
-# para deployar somente o codigo da funcao
-sls deploy function -f db_cleaner -s dev
+# Configurar credenciais
+aws configure
+    - AWS Access Key ID [None]: <SDAFADSFVASFAS>
+    - AWS Secret Access Key [None]: <ifijfiawejnfovciajfcajf>
+    - Default region name [None]: us-east-1
+    - Default output format [None]:
+
+
+# Apagar pasta serverless (sls)
+sudo rm -rf /usr/bin/sls
+sudo npm install -g serverless@3.22.0
+
