@@ -26,4 +26,3 @@ aws configure
 # Apagar pasta serverless (sls)
 sudo rm -rf /usr/bin/sls
 sudo npm install -g serverless@3.22.0
-

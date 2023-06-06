@@ -1,0 +1,3 @@
+VACCUM full
+
+REINDEX DATABASE nexus_prod
